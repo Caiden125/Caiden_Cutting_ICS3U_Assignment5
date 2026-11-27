@@ -49,7 +49,7 @@ def connect_to_server():
 
     return weather_data
 
-
+weather_data = connect_to_server()
 
 def process_weather_data(data):
     """
@@ -67,8 +67,22 @@ def process_weather_data(data):
     -------------------------------------------------------
     """
 
+    cities = []
+
+    # Separate the data into individual city records.
+    records = data.splitlines()
+
+    for record in records:
+        # Separate each record into its five fields. 
+      	#Hint, use record.split("|")
+        information = record.split("|")
+        cities.append(information)
+    
+    return cities
+
     pass
 
+cities = process_weather_data(weather_data)
 
 def display_all_cities(cities):
     """
@@ -82,6 +96,9 @@ def display_all_cities(cities):
        None
     -------------------------------------------------------
     """
+
+    for line in cities:
+        print(line)
 
     pass
 
@@ -98,6 +115,12 @@ def search_city(cities):
        None
     -------------------------------------------------------
     """
+
+    search = str(input("What city are you looking for? "))
+
+    for city in cities:
+        if city == search[0]:
+            print(city)
 
     pass
 
